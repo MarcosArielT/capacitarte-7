@@ -27,7 +27,7 @@
     /* gradientes */
     
     --gradiente1: #52ACFF;
-    background-image: linear-gradient(180deg, #52ACFF 25%, #FFE32C 100%);
+    background-image: linear-gradient(180deg, #52ACFF 25%, #FFE32C 100%) no-repeat fixed center;
     --gradiente2: #FA8BFF;
     background-image: linear-gradient(45deg, #FA8BFF 0%, #2BD2FF 52%, #2BFF88 90%);
 }
@@ -36,14 +36,140 @@
 
 @keyframes titular{
     0%{
-        transform: translateX(-100);
+        transform: translateX(-100%);
     }
+}
+
+@keyframes logo{
+    0%{
+        transform: scaleX(-100%);
+    }
+}
+
+@keyframes navbar{
+    0%{
+        transform: translateY(-200%);
+    }
+}
+
+body{
+    font-family: var(--texto);
+    background: var(--gradiente1);
+    background-size: cover;
+    min-height: 100vh;
 }
 
 .titulos{
     animation-name: titular;
     animation-duration: 0.5s;
-
-    text-align: center;
     font-family: var(--titulo);
+}
+
+header{
+    display: flex;
+    justify-content: space-between;
+
+    height: 60px;
+    padding: 15px 20px;
+
+    background-color: var(--D);
+    position: fixed ;
+    width: 100%;
+    z-index: 2;
+}
+
+.header-logo{
+    animation-name: logo;
+    animation-duration: 1ms;
+animation-iteration-count: infinite;
+}
+
+.navbar{
+    z-index: -1;
+}
+
+.navbar-list{
+    display:none;
+    column-gap: 15px;
+    list-style: none;
+
+}
+
+.navbar-list li a{
+    text-decoration: none;
+    color: black;
+    z-index: -1;
+}
+
+.navbar-list li a:hover{
+    text-decoration: underline;
+    transition-duration: 0.5s;
+}
+
+.bars-menu{
+    font-size: 2rem;
+}
+
+#toggle-menu{
+    display: none;
+}
+
+#toggle-menu:checked ~ .navbar-list{
+    display: flex;
+    flex-flow:column;
+    position: absolute;
+    row-gap: 20px;
+    padding: 40px;
+    right: 0;
+    background-color:var(--B);
+    border-end-start-radius: 20px;
+}
+
+/* media queries */
+
+
+/* rablet */
+@media (min-width:481px) and (max-width:769px){
+    header{
+        height: 80px;
+    }
+    .bars-menu{
+        display: none;
+    }
+    .navbar-list{
+        display: flex;
+        font-size: large;
+        column-gap: 30px;
+    }
+}
+
+/* laptop */
+@media (min-width:769px) and (max-width:1279px){
+    header{
+        height: 60px;
+    }
+    .bars-menu{
+        display: none;
+    }
+    .navbar-list{
+        display: flex none;
+        font-size: larger;
+        column-gap: 30px;
+    }
+}
+
+
+/* desktop */
+@media (min-width:1280px){
+    header{
+        height: 70px;
+    }
+    .bars-menu{
+        display: none;
+    }
+    .navbar-list{
+        display: flex none;
+        font-size: x-large;
+        column-gap: 30px;
+    }
 }
